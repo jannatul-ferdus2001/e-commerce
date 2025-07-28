@@ -15,19 +15,19 @@ const Header = () => {
              <img src={Logo} alt="" />
         </div>
         <div className=' w-full lg:w-10/12'>
-            <ul className={`lg:flex gap-6 justify-center duration-300 ease-in-out ${menu == true ? "bg-[#eccdcd] h-[0px] opacity-0" : "bg-[#a79d9d] h-[120px] opacity-100"}`}>
-                <li className='font-dm text-[#767676] text-[14px] hover:text-[#262626] duration-300 ease-in-out hover:font-bold'>Home</li>
-                <li className='font-dm text-[#767676] text-[14px] hover:text-[#262626] duration-300 ease-in-out hover:font-bold'>Shop</li>
-                <li className='font-dm text-[#767676] text-[14px] hover:text-[#262626] duration-300 ease-in-out hover:font-bold'>About</li>
-                <li className='font-dm text-[#767676] text-[14px] hover:text-[#262626] duration-300 ease-in-out hover:font-bold'>Contacts</li>
-                <li className='font-dm text-[#767676] text-[14px] hover:text-[#262626] duration-300 ease-in-out hover:font-bold'>Journal</li>
+            <ul className={`lg:flex gap-6 justify-center duration-300 ease-in-out ${menu == true ? "bg-[#eccdcd] h-[0px] opacity-0" : "bg-[#a79d9d] h-[120px] opacity-100 lg:h-[0px]"}`}>
+                <li className='font-dm text-[#767676] text-[14px] hover:text-[#262626] duration-300 ease-in-out hover:font-bold leading-[0px]'>Home</li>
+                <li className='font-dm text-[#767676] text-[14px] hover:text-[#262626] duration-300 ease-in-out hover:font-bold leading-[0px]'>Shop</li>
+                <li className='font-dm text-[#767676] text-[14px] hover:text-[#262626] duration-300 ease-in-out hover:font-bold leading-[0px]'>About</li>
+                <li className='font-dm text-[#767676] text-[14px] hover:text-[#262626] duration-300 ease-in-out hover:font-bold leading-[0px]'>Contacts</li>
+                <li className='font-dm text-[#767676] text-[14px] hover:text-[#262626] duration-300 ease-in-out hover:font-bold leading-[0px]'>Journal</li>
 
 
 
 
             </ul>
         </div>
-        <div className='lg:hidden absolute top-[10px] right-2 z-[1]' onClick={()=>setMenu(!menu)}>
+        <div className='lg:hidden absolute top-[10px] right-2' onClick={()=>setMenu(!menu)}>
             {menu ?  <RxCross2/> : <FaBars/>}
           
         </div>
