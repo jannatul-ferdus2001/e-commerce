@@ -8,16 +8,16 @@ const Body = () => {
   return (
     <div className="bg-[#ffff] pt-[100px] pb-[70px]">
         <Container>
-           <div className="flex justify-between gap-5">
+           <div className="flex items-center space-x-2 lg:space-x-10">
              <div className="w-6/12">
-        <img  src={ad_1} alt="" />
+        <img className="w-full" src={ad_1} alt="" />
         </div>
-        <div className="w-6/12 px-8">
+        <div className="w-6/12 space-y-2 lg:space-y-8">
         <div className="">
-            <img className="w-full h-[100%]" src={ad_2} alt="" />
+            <img className="w-full" src={ad_2} alt="" />
         </div>
-        <div className="pt-12">
-            <img className="w-full h-[100%]" src={ad_3} alt="" />
+        <div>
+            <img className="w-full" src={ad_3} alt="" />
         </div>
         </div>
            </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Container from './Container'
 import One from '../assets/one.png'
 import Three from '../assets/Three.png'
@@ -10,6 +10,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import Slider from 'react-slick'
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import { ApiData } from './ContextApi'
 
 
 
@@ -38,7 +39,9 @@ function SamplePrevArrow(props) {
 
 
 const NewArri = () => {
-    var settings = {
+    let data = useContext(ApiData)
+    
+    const newProduct = {
     dots: false,
     infinite: true,
     speed: 500,
@@ -53,16 +56,18 @@ const NewArri = () => {
         <div className="pb-10">
             <p className="text-[39px] text-[#262626] font-dm font-[700]">New Arrivals</p>
         </div> 
-        <Slider {...settings}>
-            <div className="w-3/12 group pr-6">
+              <Slider {...newProduct}>
+                {data.map((item)=>(
+                <div className="w-3/12 group pr-6">
             <div className="relative">
-                <img src={One} alt="" />
+                <img src={item.thumbnail} alt="" />
                 <div className="absolute top-[5%] left-[7%] bg-[#262626] pt-[5px] pl-[15px] pr-[15px] pb-[5px] text-[#ffff] font-dm font-[700] text-[14px]">10%</div>
                 <div className="flex justify-between items-center pt-3">
-                    <h5 className="font-dm font-[700] text-[20px] text-[#262626]">Basic Crew  Neck Tee</h5>
-                    <p className="font-dm font-[400] text-[16px] text-[#767676]">$44.00</p>
+                    <h5 className="font-dm font-[700] text-[20px] text-[#262626]">{item.title}</h5>
+                    <p className="font-dm font-[400] text-[16px] text-[#767676]">${item.price}</p>
                 </div>
-                <div className="bg-[#ffff] w-full absolute bottom-[11%] left-0 opacity-0 group-hover:opacity-100">
+                 <div className="font-dm font-[400] text-[16px] text-[#767676] pt-4">Black</div>
+                <div className="bg-[#ffff] w-full absolute bottom-[21%] left-0 opacity-0 group-hover:opacity-100">
                     <div className="flex items-center">
                         <p className='font-dm text-[16px] text-[#767676] pt-[20px] pl-[120px]'>Add to Wish List</p>
                        <div className="pl-[20px] pt-[20px]"> <FaHeart /></div>
@@ -77,7 +82,10 @@ const NewArri = () => {
                 </div>
             </div>
             </div>
-            <div className="w-3/12 group pr-6">
+
+              ))}
+              </Slider>
+            {/* <div className="w-3/12 group pr-6">
             <div className="relative">
                 <img src={Three} alt="" />
                 <div className="absolute top-[5%] left-[7%] bg-[#262626] pt-[5px] pl-[15px] pr-[15px] pb-[5px] text-[#ffff] font-dm font-[700] text-[14px]">New</div>
@@ -449,9 +457,8 @@ const NewArri = () => {
 
                 </div>
             </div>
-            </div>
-
-        </Slider>     
+            </div> */}
+     
      </Container>
       
     </div>
