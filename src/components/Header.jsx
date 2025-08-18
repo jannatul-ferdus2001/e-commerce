@@ -3,6 +3,7 @@ import Container from './Container'
 import Logo from "../assets/logo.png";
 import { FaBars } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
+import { Link } from 'react-router-dom';
 
 
 const Header = () => {
@@ -11,16 +12,19 @@ const Header = () => {
     <header className='py-3'>
         <Container>
         <div className='lg:flex items-center'>
-            <div className='lg:w-2/12 relative z-[1]'>
+            <div className='w-2/12 relative'>
              <img src={Logo} alt="" />
         </div>
-        <div className=' w-full lg:w-10/12'>
-            <ul className={`lg:flex gap-6 justify-center duration-300 ease-in-out ${menu == true ? "bg-[#eccdcd] h-[0px] opacity-0" : "bg-[#a79d9d] h-[120px] opacity-100 lg:h-[0px]"}`}>
-                <li className='font-dm text-[#767676] text-[14px] hover:text-[#262626] duration-300 ease-in-out hover:font-bold leading-[0px]'>Home</li>
-                <li className='font-dm text-[#767676] text-[14px] hover:text-[#262626] duration-300 ease-in-out hover:font-bold leading-[0px]'>Shop</li>
-                <li className='font-dm text-[#767676] text-[14px] hover:text-[#262626] duration-300 ease-in-out hover:font-bold leading-[0px]'>About</li>
-                <li className='font-dm text-[#767676] text-[14px] hover:text-[#262626] duration-300 ease-in-out hover:font-bold leading-[0px]'>Contacts</li>
-                <li className='font-dm text-[#767676] text-[14px] hover:text-[#262626] duration-300 ease-in-out hover:font-bold leading-[0px]'>Journal</li>
+        <div className='w-full lg:w-10/12'>
+            <ul className={`lg:flex gap-6 lg:bg-transparent justify-center  duration-300 ease-in-out 
+                ${ menu == true 
+                ? "bg-[#eccdcd]"
+                : "mt-[-200px] lg:mt-0"}`}>
+                <li className='font-dm text-[#767676] text-[14px] hover:text-[#262626] duration-300 ease-in-out hover:font-bold'><Link to="/">Home</Link></li>
+                <li className='font-dm text-[#767676] text-[14px] hover:text-[#262626] duration-300 ease-in-out hover:font-bold'><Link to="/shop">Shop</Link></li>
+                <li className='font-dm text-[#767676] text-[14px] hover:text-[#262626] duration-300 ease-in-out hover:font-bold'>About</li>
+                <li className='font-dm text-[#767676] text-[14px] hover:text-[#262626] duration-300 ease-in-out hover:font-bold'>Contacts</li>
+                <li className='font-dm text-[#767676] text-[14px] hover:text-[#262626] duration-300 ease-in-out hover:font-bold'>Journal</li>
 
 
 

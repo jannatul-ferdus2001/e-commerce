@@ -50,7 +50,7 @@ const Navbar = () => {
     <div className="bg-[#F5F5F3] py-3">
         <Container>
         <div className="flex items-center">
-        <div className="w-2/7 relative">
+        <div className="lg:w-2/7 relative">
         <div ref={cateRef} className="flex items-center gap-x-2">
             <FaBarsStaggered />
             <h3>Shop by Category</h3>
@@ -99,7 +99,7 @@ const Navbar = () => {
         </div>
        }
         </div>
-        <div className="w-4/7">
+        <div className="lg:w-4/7">
         <div className="relative">
           <input
       type="text"
@@ -113,7 +113,7 @@ const Navbar = () => {
           </div>
         </div>
         </div>
-        <div className="w-1/7 relative">
+        <div className="lg:w-1/7 relative">
         <div className="flex items-center justify-end gap-x-4">
             <div ref={accRef} className="flex">
                <FaUser className="" />
