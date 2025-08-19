@@ -2,9 +2,9 @@
 import { FaHeart } from "react-icons/fa";
 import { FiRefreshCcw } from "react-icons/fi";
 import { FaShoppingCart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Post = ({allPage, filterCategory}) => {
-  console.log(filterCategory);
   
     
     
@@ -41,7 +41,13 @@ const Post = ({allPage, filterCategory}) => {
       :  allPage.map((item)=>(
         <div className="w-[32%]">
                 <div className="relative group">
-                  <img className='w-full' src={item.thumbnail} alt="" />
+               <Link to={`/shop/${item.id}`}>
+              <img className='w-full' src={item.thumbnail} alt="" />
+
+               </Link>
+                 
+
+
                   <div className="flex justify-between items-center pt-3">
                     <h5 className="font-dm font-[700] text-[20px] text-[#262626]">{item.title}</h5>
                     <p className="font-dm font-[400] text-[16px] text-[#767676]">{item.price}</p>
