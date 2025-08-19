@@ -6,7 +6,7 @@ import { FaCaretDown } from "react-icons/fa";
 import { GoChevronLeft } from "react-icons/go";
 import { FaCaretUp } from "react-icons/fa";
 import Post from '../components/Post';
-import Pagination from '../components/pagination';
+import Pagination from '../components/Pagination';
 import { ApiData } from '../components/ContextApi';
 import { FaMinus } from "react-icons/fa6";
 import { FaSortUp } from "react-icons/fa";
