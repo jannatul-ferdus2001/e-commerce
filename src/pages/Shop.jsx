@@ -48,6 +48,7 @@ const Shop = () => {
   let [spshow5, setSpShow5] = useState(false)
   let [category, setCategory] = useState([])
   let [filterCategory, setFilterCategory] = useState([])
+  let [active, setActive] = useState("")
 
 
 
@@ -94,7 +95,14 @@ let handleCategory = (citem)=>{
   
 }
 
- 
+let handleAllProduct = () =>{
+  setFilterCategory("")
+}
+
+let handleActive = () =>{
+  setActive("active")
+  
+}
   
   return (
     <div>
@@ -118,6 +126,7 @@ let handleCategory = (citem)=>{
   
            {show &&
            <ul>
+            <li onClick={handleAllProduct}>All Product</li>
             {category.map((item)=>(              
               <li>
                 <div className="flex justify-between items-center border-b-[2px] border-[#F0F0F0]">
@@ -403,7 +412,7 @@ let handleCategory = (citem)=>{
                 <div className="flex justify-between">
                   <div className="h-[36px] w-[36px] border-2 border-[#F0F0F0] relative  hover:bg-[#262626] hover:text-[#ffff] hover:border-none duration-300 ease-in-out">
                    <HiMiniRectangleGroup className='absolute top-[10px] left-[10px]' /></div>
-                  <div className="h-[36px] w-[36px] border-2 border-[#F0F0F0] relative hover:bg-[#262626] hover:text-[#ffff] hover:border-none duration-300 ease-in-out">
+                  <div onClick={handleActive} className="h-[36px] w-[36px] border-2 border-[#F0F0F0] relative hover:bg-[#262626] hover:text-[#ffff] hover:border-none duration-300 ease-in-out">
                     <FaRegRectangleList className='absolute top-[10px] left-[10px]' /></div>
 
                 </div>
@@ -432,8 +441,8 @@ let handleCategory = (citem)=>{
               </div>
             </div>
           
-            <div className="flex flex-wrap justify-between py-10">
-               <Post allPage={allPage} filterCategory={filterCategory}/>
+            <div>
+               <Post allPage={allPage} filterCategory={filterCategory} active={active}/>
             </div>
             <Pagination pageNumber ={pageNumber} paginate={paginate} next={next} prev={prev} currentPage={currentPage} />         
 
