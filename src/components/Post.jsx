@@ -4,6 +4,7 @@ import { FiRefreshCcw } from "react-icons/fi";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Pagination from "./Pagination";
 
 const Post = ({allPage, filterCategory, active}) => {
   let [allFilter, setAllFilter] = useState([])
@@ -12,6 +13,7 @@ const Post = ({allPage, filterCategory, active}) => {
     useEffect(()=>{
    let filterCat = filterCategory.slice(0, 5)
    setAllFilter(filterCat)
+   setShowAll(true)
     },[filterCategory])
 
     let handleShow = () =>{
@@ -22,6 +24,7 @@ const Post = ({allPage, filterCategory, active}) => {
 
     let handleLess = () => {
       let filterCat = filterCategory.slice(0, 5)
+      setAllFilter(filterCat)
       setShowAll(true)
     }
   return (
