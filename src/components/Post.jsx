@@ -4,7 +4,6 @@ import { FiRefreshCcw } from "react-icons/fi";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Pagination from "./Pagination";
 
 const Post = ({allPage, filterCategory, active}) => {
   let [allFilter, setAllFilter] = useState([])

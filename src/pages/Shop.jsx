@@ -4,7 +4,6 @@ import { HiMiniRectangleGroup } from "react-icons/hi2";
 import { FaRegRectangleList } from "react-icons/fa6";
 import { FaCaretDown } from "react-icons/fa";
 import { GoChevronLeft } from "react-icons/go";
-import { FaCaretUp } from "react-icons/fa";
 import Post from '../components/Post';
 import Pagination from '../components/Pagination';
 import { ApiData } from '../components/ContextApi';
@@ -54,7 +53,7 @@ const Shop = () => {
 
 
   let pageNumber = [];
-  for (let i=1; i<= Math.ceil(info.length / perPage); i++){
+  for (let i=1; i<= Math.ceil(filterCategory.length > 0 ? filterCategory : info.length / perPage); i++){
     pageNumber.push(i);
   }
 
@@ -410,9 +409,9 @@ let handleActive = () =>{
           <div className="flex justify-between">
               <div className="w-2/12">
                 <div className="flex justify-between">
-                  <div className="h-[36px] w-[36px] border-2 border-[#F0F0F0] relative  hover:bg-[#262626] hover:text-[#ffff] hover:border-none duration-300 ease-in-out">
+                  <div onClick={()=>setActive("")} className={`${active == "active" ? "h-[36px] w-[36px] relative border-2 border-[#F0F0F0] bg-[#ffff] text-[#262626]" : "h-[36px] w-[36px] relative bg-[#262626] text-[#ffff]"}`}>
                    <HiMiniRectangleGroup className='absolute top-[10px] left-[10px]' /></div>
-                  <div onClick={handleActive} className="h-[36px] w-[36px] border-2 border-[#F0F0F0] relative hover:bg-[#262626] hover:text-[#ffff] hover:border-none duration-300 ease-in-out">
+                  <div onClick={handleActive} className={`${active == "active" ? "h-[36px] w-[36px] relative bg-[#262626] text-[#ffff]" :  "h-[36px] w-[36px] relative border-2 border-[#F0F0F0] bg-[#ffff] text-[#262626]"} `}>
                     <FaRegRectangleList className='absolute top-[10px] left-[10px]' /></div>
 
                 </div>

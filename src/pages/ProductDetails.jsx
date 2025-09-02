@@ -1,55 +1,59 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Container from '../components/Container'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
-import Fifteen from "../assets/fifteen.png"
-import Thirteen from "../assets/thirteen.png"
-import Twelve from "../assets/twelve.png"
-import Eleven from "../assets/eleven.png"
 import { TiStar } from "react-icons/ti";
 import { FaPlus } from "react-icons/fa6";
+import { IoMdStar, IoMdStarHalf, IoMdStarOutline } from 'react-icons/io'
+import { ApiData } from '../components/ContextApi';
 
 
 
 const ProductDetails = () => {
     let productId = useParams()
+    let info = useContext(ApiData)
+
+    let [singleProducts,setSingleProducts] = useState([])
+
+
     let singleProduct = () =>{
        axios.get(`https://dummyjson.com/products/${productId.id}`).then((response)=>{
-        console.log(response.data);
+        setSingleProducts(response.data);
         
        })
     }
     useEffect(()=>{
       singleProduct()
     },[])
+
+ 
+let clientRating =  Array.from({length:5},(_, index)=>{
+let number = index  + 0.5
+return(
+  singleProducts.rating > index + 1 ? ( <IoMdStar /> ) : singleProducts.rating > number ? <IoMdStarHalf /> : (<IoMdStarOutline />)
+)
+})
+
     
   return (
     <Container>
-        <div className="flex justify-between">
-        <div className="w-6/12">
-        <img className='w-full' src={Fifteen} alt="" />
+        <div className="py-5 space-y-15">
+        <div className="w-6/12 lg:w-3/12 mx-auto">
+        <img className='w-full' src={singleProducts.thumbnail} alt="" />
+        <h2 className='font-dm text-[26px] font-bold text-[#262626] text-center'>
+          {singleProducts.title}
+        </h2>
         </div>
-        <div className="w-6/12">
-        <img className='w-full' src={Thirteen} alt="" />
-        </div>
-        </div>
-        <div className="flex justify-between py-5">
-          <div className="w-6/12">
-           <img className='w-full' src={Twelve} alt="" />
-          </div>
-          <div className="w-6/12">
-          <img className='w-full' src={Eleven} alt="" />
-          </div>
+        
         </div>
 
         <div className="w-6/12 py-4">
           <div className="w-3/12 flex justify-between items-center">
             <div className="flex text-[#FFD881]">
-              <TiStar />
-              <TiStar />
-              <TiStar />
-              <TiStar />
-              <TiStar />
+              {clientRating}
+
+
+
             </div>
             <div className="font-dm text-[#767676] text-[16px]">
               <p>1Review</p>
