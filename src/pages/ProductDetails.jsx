@@ -9,6 +9,7 @@ import { ApiData } from '../components/ContextApi';
 
 
 
+
 const ProductDetails = () => {
     let productId = useParams()
     let info = useContext(ApiData)
@@ -33,6 +34,14 @@ return(
   singleProducts.rating > index + 1 ? ( <IoMdStar /> ) : singleProducts.rating > number ? <IoMdStarHalf /> : (<IoMdStarOutline />)
 )
 })
+
+let discountPrice = singleProducts.price ? (singleProducts.price - (singleProducts.price * singleProducts.discountPercentage) / 100).toFixed(2) : 0;
+let status =
+    singleProducts.stock > 0 ? (
+      <span className="text-green-600 font-semibold">In Stock</span>
+    ) : (
+      <span className="text-red-500 font-semibold">Out of Stock</span>
+    );
 
     
   return (
@@ -61,45 +70,19 @@ return(
           </div>
           <div className="w-3/12 py-4 flex justify-between items-center">
             <div className="relative">
-            <p className='text-[16px] font-dm text-[#767676] font-[400]'>$88.00</p>
+            <p className='text-[16px] font-dm text-[#767676] font-[400]'>${singleProducts.price}</p>
               <div className="w-12 border-1 border-[#767676] absolute bottom-3 left-0"></div>
             </div>
             <div className="">
-              <h5 className='font-dm text-[20px] font-[700] text-[#262626]'>$44.00</h5>
+              <h5 className='font-dm text-[20px] font-[700] text-[#262626]'>${discountPrice}</h5>
             </div>
           </div>
-          <div className="border-b-1 border-[#F0F0F0]"></div>
-          <div className="w-5/12 flex justify-between items-center py-4">
-            <div className="font-dm text-[16px] font-[700] text-[#262626] pr-5 "><p>COLOR:</p></div>
-            <div className="w-[20px] h-[20px] bg-[#e3dddd] rounded-full"></div>
-            <div className="w-[28px] h-[28px] bg-[#FF8686] rounded-full"></div>
-            <div className="w-[20px] h-[20px] bg-[#7ED321] rounded-full"></div>
-            <div className="w-[20px] h-[20px] bg-[#B6B6B6] rounded-full"></div>
-            <div className="w-[20px] h-[20px] bg-[#15CBA5] rounded-full"></div>
-            </div>
-            <div className="w-4/12 flex justify-between items-center">
-              <div className="font-dm text-[16px] font-[700] text-[#262626] pr-5"><h6>SIZE:</h6></div>
-              <div className="">
-                <select name="" id="" className="pl-[25px] pr-[60px] py-2 bg-[#ffff] my-5 text-[#C4C4C4] font-dm text-[14px] font-[400] outline-1">
-                 <option value="S">S</option>
-                  <option value="M">M</option>
-                  <option value="Xl">Xl</option>
-                  <option value="Xll">Xll</option>
-                </select>
-              </div>
-            </div>
-            <div className="w-3/12 flex justify-between items-center">
-          <div className="font-dm text-[16px] font-[700] text-[#262626] pr-5"><p>QUANTITY:</p></div>
-          <input type="text" placeholder='- 1 +' className='pl-[20px] py-2 bg-[#ffff] my-5 text-[#C4C4C4] font-dm text-[14px] font-[400] outline-1'/>
-
-            </div>
-         <div className="border-b-1 border-[#F0F0F0]"></div>
          <div className="w-3/12 py-4 flex justify-between items-center">
             <div className="">
             <h6 className='text-[16px] font-dm text-[#262626] font-[700]'>STATUS:</h6>
             </div>
             <div className="">
-              <p className='font-dm text-[16px] font-[400] text-[#767676]'>In stock</p>
+              <p className='font-dm text-[16px] font-[400] text-[#767676]'>{status}</p>
             </div>
           </div>
         <div className="border-b-1 border-[#F0F0F0]"></div>

@@ -28,26 +28,14 @@ const Shop = () => {
   let allPage = info.slice(firstPage, lastPage)
   let [show, setShow] = useState(false)
   let [show2, setShow2] = useState(false)
-  let [scshow, setScShow] = useState(false)
-  let [scshow2, setScShow2] = useState(false)
-  let [scshow3, setScShow3] = useState(false)
-  let [scshow4, setScShow4] = useState(false)
-  let [scshow5, setScShow5] = useState(false)
   let [show3, setShow3] = useState(false)
-  let [sbshow, setSbShow] = useState(false)
-  let [sbshow2, setSbShow2] = useState(false)
-  let [sbshow3, setSbShow3] = useState(false)
-  let [sbshow4, setSbShow4] = useState(false)
-  let [sbshow5, setSbShow5] = useState(false)
   let [show4, setShow4] = useState(false)
-  let [spshow, setSpShow] = useState(false)
-  let [spshow2, setSpShow2] = useState(false)
-  let [spshow3, setSpShow3] = useState(false)
-  let [spshow4, setSpShow4] = useState(false)
-  let [spshow5, setSpShow5] = useState(false)
+  let [low, setLow] = useState()
+  let [high, setHigh] = useState()
   let [category, setCategory] = useState([])
   let [filterCategory, setFilterCategory] = useState([])
   let [active, setActive] = useState("")
+  let [brand, setBrand] = useState([])
 
 
 
@@ -81,10 +69,16 @@ const Shop = () => {
     setPerPage(e.target.value);
     
   }
+  let handleBrand = (bitem) => {
+ let filterBrand = info.filter((item)=> item.brand == bitem)
+  setFilterCategory(filterBrand)
+  }
    
 
 useEffect(()=>{
     setCategory([...new Set(info.map((item)=> item.category))])
+    setBrand([...new Set(info.map((item)=> item.brand))])
+
  },[info])
  
 
@@ -102,6 +96,17 @@ let handleActive = () =>{
   setActive("active")
   
 }
+let handlePrice = (value) =>{
+  setLow(value.low);
+  setHigh(value.high);
+  let priceFilter = info.filter((item)=> item.price > value.low && item.price < value.high)
+  setFilterCategory(priceFilter);
+  
+  
+}
+
+
+
   
   return (
     <div>
@@ -146,85 +151,34 @@ let handleActive = () =>{
             {show2 &&
             <ul>
               <li>
-              <div className="flex justify-between items-center border-b-[2px] border-[#F0F0F0]">
+              <div className="flex items-center border-b-[2px] border-[#F0F0F0]">
                 <div className="w-[11px] h-[11px] rounded-full translate-[50%] border-none bg-[#000] mt-10 mb-5"></div>
-              <p onClick={()=>setScShow(!scshow)} className='font-dm text-[16px] text-[#767676] pl-4 pt-10 pb-5'>Color 1</p>
-              {scshow ? <FaMinus /> : <FaPlus /> }
+              <p className='font-dm text-[16px] text-[#767676] pl-4 pt-10 pb-5'>Color 1</p>
             </div>
-
-            {scshow &&
-             <ul>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>one</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>two</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>three</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>four</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>five</li>
-             </ul>
-             }
               </li>
               <li>
-                <div className="flex justify-between items-center border-b-[2px] border-[#F0F0F0]">
+                <div className="flex items-center border-b-[2px] border-[#F0F0F0]">
               <div className="w-[11px] h-[11px] rounded-full translate-[50%] border-none bg-[#FF8686] mt-5 mb-3"></div>
-              <p onClick={()=>setScShow2(!scshow2)} className='font-dm text-[16px] text-[#767676] pl-4 pt-5 pb-3'>Color 2</p>
-              {scshow2 ? <FaMinus /> : <FaPlus /> }
+              <p  className='font-dm text-[16px] text-[#767676] pl-4 pt-5 pb-3'>Color 2</p>
             </div>
-            {scshow2 &&
-             <ul>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>six</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>seven</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>eight</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>nine</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>ten</li>
-             </ul>
-             }
               </li>
               <li>
-                <div className="flex justify-between items-center border-b-[2px] border-[#F0F0F0]">
+                <div className="flex items-center border-b-[2px] border-[#F0F0F0]">
               <div className="w-[11px] h-[11px] rounded-full translate-[50%] border-none bg-[#7ED321] mt-5 mb-3"></div>
-              <p onClick={()=>setScShow3(!scshow3)} className='font-dm text-[16px] text-[#767676] pl-4 pt-5 pb-3'>Color 3</p>
-              {scshow3 ? <FaMinus /> : <FaPlus /> }
+              <p className='font-dm text-[16px] text-[#767676] pl-4 pt-5 pb-3'>Color 3</p>
             </div>
-            {scshow3 &&
-             <ul>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>eleven</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>twelve</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>thirteen</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>fourteen</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>fifteen</li>
-             </ul>
-             }
               </li>
               <li>
-                <div className="flex justify-between items-center border-b-[2px] border-[#F0F0F0]">
+                <div className="flex items-center border-b-[2px] border-[#F0F0F0]">
               <div className="w-[11px] h-[11px] rounded-full translate-[50%] border-none bg-[#B6B6B6] mt-5 mb-3"></div>
-              <p onClick={()=>setScShow4(!scshow4)} className='font-dm text-[16px] text-[#767676] pl-4 pt-5 pb-3'>Color 4</p>
-              {scshow4 ? <FaMinus /> : <FaPlus /> }
+              <p className='font-dm text-[16px] text-[#767676] pl-4 pt-5 pb-3'>Color 4</p>
             </div>
-            {scshow4 &&
-             <ul>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>sixteen</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>seventeen</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>eightteen</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>ninteen</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>twenty</li>
-             </ul>
-             }
               </li>
               <li>
-              <div className="flex justify-between items-center border-b-[2px] border-[#F0F0F0]">
+              <div className="flex items-center border-b-[2px] border-[#F0F0F0]">
               <div className="w-[11px] h-[11px] rounded-full translate-[50%] border-none bg-[#15CBA5] mt-5 mb-5"></div>
-              <p onClick={()=>setScShow5(!scshow5)} className='font-dm text-[16px] text-[#767676] pl-4 pt-5 pb-3'>Color 5</p>
-              {scshow5 ? <FaMinus /> : <FaPlus /> }
+              <p className='font-dm text-[16px] text-[#767676] pl-4 pt-5 pb-3'>Color 5</p>
             </div>
-            {scshow5 &&
-             <ul>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>twenty one</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>twenty two</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>twenty three</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>twenty four</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>twenty five</li>
-             </ul>
-             }
               </li>
       
             </ul>
@@ -238,81 +192,14 @@ let handleActive = () =>{
             </div>
            {show3 &&
             <ul>
-              <li>
-                <div className=" flex justify-between items-center border-b-[2px] border-[#F0F0F0]">
-            <p onClick={()=>setSbShow(!sbshow)} className='text-[16px] font-dm text-[#767676] pt-10 pb-5'>Brand 1</p>
-            {sbshow ? <FaMinus /> : <FaPlus />}
+            {brand.map((item)=>(
+            <li onClick={() => handleBrand(item)}>
+                <div className=" flex justify-between items-center">
+            <p className='text-[16px] font-dm text-[#767676] pt-2 pb-2'>{item}</p>
             </div>
-             {sbshow &&
-             <ul>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>one</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>two</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>three</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>four</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>five</li>
-             </ul>
-             }
               </li>
-             <li>
-              <div className=" flex justify-between items-center border-b-[2px] border-[#F0F0F0]">
-            <p onClick={()=>setSbShow2(!sbshow2)} className='text-[16px] font-dm text-[#767676] pt-5 pb-3'>Brand 2</p>
-            {sbshow2 ? <FaMinus /> : <FaPlus />}
-            </div>
-            {sbshow2 &&
-             <ul>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>six</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>seven</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>eight</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>nine</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>ten</li>
-             </ul>
-             }
-             </li>
-             <li>
-            <div className=" flex justify-between items-center border-b-[2px] border-[#F0F0F0]">
-            <p onClick={()=>setSbShow3(!sbshow3)} className='text-[16px] font-dm text-[#767676] pt-5 pb-3'>Brand 3</p>
-            {sbshow3 ? <FaMinus /> : <FaPlus />}
-            </div>
-            {sbshow3 &&
-             <ul>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>eleven</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>twelve</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>thirteen</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>fourteen</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>fifteen</li>
-             </ul>
-             }
-             </li>
-             <li>
-               <div className=" flex justify-between items-center border-b-[2px] border-[#F0F0F0]">
-            <p onClick={()=>setSbShow4(!sbshow4)} className='text-[16px] font-dm text-[#767676] pt-5 pb-3'>Brand 4</p>
-            {sbshow4 ? <FaMinus /> : <FaPlus />}
-            </div>
-            {sbshow4 &&
-             <ul>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>sixteen</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>seventeen</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>eightteen</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>ninteen</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>twenty</li>
-             </ul>
-             }
-             </li>
-             <li>
-               <div className=" flex justify-between items-center border-b-[2px] border-[#F0F0F0]">
-            <p onClick={()=>setSbShow5(!sbshow5)} className='text-[16px] font-dm text-[#767676] pt-5 pb-3'>Brand 5</p>
-            {sbshow5 ? <FaMinus /> : <FaPlus />}
-            </div>
-            {sbshow5 &&
-             <ul>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>twenty one</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>twenty two</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>twenty three</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>twenty four</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>twenty five</li>
-             </ul>
-             }
-             </li>
+
+            ))}
             </ul>
            }
             </div>
@@ -324,82 +211,36 @@ let handleActive = () =>{
               </div>
               {show4 &&
               <ul>
-                <li>
+                <li onClick={() => handlePrice({low:0, high:10})}>
               <div className="flex justify-between items-center border-b-[2px] border-[#F0F0F0]">
-            <p onClick={()=>setSpShow(!spshow)} className='text-[16px] font-dm text-[#767676] pt-10 pb-5'>$0.00 - $9.99</p>
-            {spshow ? <FaMinus /> : <FaPlus /> }
+            <p className='text-[16px] font-dm text-[#767676] pt-10 pb-5'>$0 - $10</p>
             </div>
-            {spshow &&
-             <ul>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>one</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>two</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>three</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>four</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>five</li>
-             </ul>
-            }
                 </li>
-                <li>
+                <li onClick={() => handlePrice({low:11, high:20})}>
               <div className=" flex justify-between items-center border-b-[2px] border-[#F0F0F0]">
             
-              <p onClick={()=>setSpShow2(!spshow2)} className='text-[16px] font-dm text-[#767676] pt-5 pb-3'>$10.00 - $19.99</p>
-              {spshow2 ? <FaMinus /> : <FaPlus /> }
+              <p className='text-[16px] font-dm text-[#767676] pt-5 pb-3'>$11.00 - $20</p>
             </div>
-            {spshow2 &&
-            <ul>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>six</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>seven</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>eight</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>nine</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>ten</li>
-             </ul>
-             
-            }
                 </li>
-                <li>
+                <li onClick={() => handlePrice({low:21, high:30})}>
               <div className="flex justify-between items-center border-b-[2px] border-[#F0F0F0]">
-            <p onClick={()=>setSpShow3(!spshow3)} className='text-[16px] font-dm text-[#767676] pt-5 pb-3'>$20.00 - $29.99</p>
-            {spshow3 ? <FaMinus /> : <FaPlus /> }
+            <p className='text-[16px] font-dm text-[#767676] pt-5 pb-3'>$21 - $30</p>
             </div>
-            {spshow3 && 
-            <ul>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>eleven</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>twelve</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>thirteen</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>fourteen</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>fifteen</li>
-             </ul>
-            }
                 </li>
-                <li>
+                <li onClick={() => handlePrice({low:31, high:40})}>
                   <div className="flex justify-between items-center border-b-[2px] border-[#F0F0F0]">
-            <p onClick={()=>setSpShow4(!spshow4)} className='text-[16px] font-dm text-[#767676] pt-5 pb-3'>$30.00 - $39.99</p>
-            {spshow4 ? <FaMinus /> : <FaPlus /> }
+            <p  className='text-[16px] font-dm text-[#767676] pt-5 pb-3'>$31 - $40</p>
             </div>
-            {spshow4 &&
-            <ul>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>sixteen</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>seventeen</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>eightteen</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>ninteen</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>twenty</li>
-             </ul>
-            }
                 </li>
-                <li>
+                <li onClick={() => handlePrice({low:41, high:70})}>
                <div className="flex justify-between items-center border-b-[2px] border-[#F0F0F0]">
-            <p onClick={()=>setSpShow5(!spshow5)} className='text-[16px] font-dm text-[#767676] pt-5 pb-3'>$40.00 - $69.99</p>
-            {spshow5 ? <FaMinus /> : <FaPlus /> }
+            <p className='text-[16px] font-dm text-[#767676] pt-5 pb-3'>$41 - $70</p>
             </div>
-            {spshow5 &&
-            <ul>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>twenty one</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>twenty two</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>twenty three</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>twenty four</li>
-              <li className='text-[16px] font-dm text-[#767676] py-1'>twenty five</li>
-             </ul>
-            }
+                </li>
+                 <li onClick={() => handlePrice({low:71, high:100})}>
+               <div className="flex justify-between items-center border-b-[2px] border-[#F0F0F0]">
+            <p className='text-[16px] font-dm text-[#767676] pt-5 pb-3'>$71 - $100</p>
+            </div>
                 </li>
               </ul>
               }
