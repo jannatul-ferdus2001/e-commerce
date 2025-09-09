@@ -6,11 +6,14 @@ import { TiStar } from "react-icons/ti";
 import { FaPlus } from "react-icons/fa6";
 import { IoMdStar, IoMdStarHalf, IoMdStarOutline } from 'react-icons/io'
 import { ApiData } from '../components/ContextApi';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../components/slice/productSlice';
 
 
 
 
 const ProductDetails = () => {
+  let dispatch = useDispatch()
     let productId = useParams()
     let info = useContext(ApiData)
 
@@ -42,6 +45,9 @@ let status =
     ) : (
       <span className="text-red-500 font-semibold">Out of Stock</span>
     );
+    let handleCart = () =>{
+      dispatch(addToCart("ami"))
+    }
 
     
   return (
@@ -91,7 +97,7 @@ let status =
             <p>Add to Wish List</p>
           </div>
           <div className="px-[40px] py-4 border-1 border-[#262626] text-[#262626] text-[14px] font-dm font-[700] hover:border-none hover:bg-[#262626] hover:text-[#fff]">
-            <p>Add to Cart</p>
+            <button onClick={handleCart}>Add to Cart</button>
           </div>
         </div>
       <div className="border-b-1 border-[#F0F0F0]"></div>
@@ -124,16 +130,33 @@ let status =
         </div>
 
         <div className="w-full py-20">
-        <div className="w-3/12 flex justify-between items-center">
-          <div className="font-dm text-[20px] font-[400] text-[#767676]">
-            <p>Description</p>
+          <div className="w-6/12">
+            <div class="mb-4 border-b border-gray-200 dark:border-gray-800">
+    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-styled-tab" data-tabs-toggle="#default-styled-tab-content" data-tabs-active-classes="text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500" data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300" role="tablist">
+        <li class="me-2" role="presentation">
+            <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-styled-tab" data-tabs-target="#styled-profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Description</button>
+        </li>
+        <li class="me-2" role="presentation">
+            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="dashboard-styled-tab" data-tabs-target="#styled-dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">Reviews</button>
+        </li>
+    </ul>
+</div>
+<div id="default-styled-tab-content">
+    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-200" id="styled-profile" role="tabpanel" aria-labelledby="profile-tab">
+        <p class="text-sm text-gray-500 dark:text-gray-400">
+          {singleProducts.description}
+          </p>
+    </div>
+    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-200" id="styled-dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+        <p class="text-sm text-gray-500 dark:text-gray-400">
+          {singleProducts?.reviews?.map((item)=>(
+            <div className="">{item.comment}</div>
+          ))}
+          </p>
+    </div>
+</div>
           </div>
-          <div className="font-dm text-[20px] font-[700] text-[#262626]">
-            <h5>Reviews (1)</h5>
-          </div>
-        </div>
-        <p className='font-dm text-[14px] font-[400] pt-8 pb-4 text-[#767676]'>1 review for Product</p>
-        <div className="border-b-1 border-[#F0F0F0]"></div>
+        
         <div className="w-2/12 flex justify-between items-center">
           <div className="font-dm text-[16px] font-[400] pt-8 pb-4  text-[#262626]">
             <p>John Ford</p>
