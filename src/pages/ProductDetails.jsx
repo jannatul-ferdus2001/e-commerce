@@ -45,8 +45,8 @@ let status =
     ) : (
       <span className="text-red-500 font-semibold">Out of Stock</span>
     );
-    let handleCart = () =>{
-      dispatch(addToCart("ami"))
+    let handleCart = (item) =>{
+    dispatch(addToCart({...item, qun:1}))
     }
 
     
@@ -97,7 +97,7 @@ let status =
             <p>Add to Wish List</p>
           </div>
           <div className="px-[40px] py-4 border-1 border-[#262626] text-[#262626] text-[14px] font-dm font-[700] hover:border-none hover:bg-[#262626] hover:text-[#fff]">
-            <button onClick={handleCart}>Add to Cart</button>
+            <button onClick={()=> handleCart(singleProducts)}>Add to Cart</button>
           </div>
         </div>
       <div className="border-b-1 border-[#F0F0F0]"></div>
