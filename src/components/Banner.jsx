@@ -1,8 +1,12 @@
 import React from 'react'
 import banner from "../assets/Banner.png"
 import Slider from 'react-slick';
+import { useSelector } from 'react-redux';
 
 const Banner = () => {
+  let result = useSelector((state)=>state.product.products)
+  console.log(result);
+  
     var settings = {
     arrows: false,
     dots: true,
@@ -42,7 +46,8 @@ const Banner = () => {
   };
   return (
     <>
-    <Slider {...settings}>
+    <h2>{result}</h2>
+    {/* <Slider {...settings}>
         <div className="">
         <img src={banner} alt="" />
     </div>
@@ -56,7 +61,7 @@ const Banner = () => {
         <img src={banner} alt="" />
     </div>
 
-    </Slider>
+    </Slider> */}
     </>
   )
 }

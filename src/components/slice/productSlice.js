@@ -1,32 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  cartItem: [],
+  products:[]
 }
 
 export const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {
-    addToCart: (state,action) => {
-    let findProduct =  state.cartItem.findIndex((item)=> item.id == action.payload.id)
-    console.log(findProduct);
-     
-    if(findProduct !== -1){
-     state.cartItem[findProduct].qun += 1;  
-
-    }else{
-      console.log("ami same");
-      state.cartItem = [{...action.payload,qun: 1 }]
-      
+    allproduct: (state, action) => {
+     state.products = action.payload
     }
-   
     
-    
-    },
   },
 })
 
-export const { addToCart } = productSlice.actions
+export const { allproduct } = productSlice.actions
 
 export default productSlice.reducer
