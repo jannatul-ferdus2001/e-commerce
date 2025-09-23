@@ -8,6 +8,7 @@ import { FaCartArrowDown } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { FaCaretDown } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
+import { useSelector } from 'react-redux';
 
 
 
@@ -21,6 +22,7 @@ const Navbar = () => {
     let [show, setShow] = useState(false)
     let [accshow, setAccShow] = useState(false)
     let [cartshow, setCartShow] = useState(false)
+    let cartdata = useSelector((state)=>state.product.cartItem)
     useEffect(()=>{
        
         
@@ -120,6 +122,8 @@ const Navbar = () => {
                <FaCaretDown />
             </div>
             <div ref={cartRef} className="">
+
+                {cartdata.length}
                 <FaCartArrowDown />
             </div>
         </div>

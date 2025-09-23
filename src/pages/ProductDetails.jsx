@@ -7,7 +7,7 @@ import { FaPlus } from "react-icons/fa6";
 import { IoMdStar, IoMdStarHalf, IoMdStarOutline } from 'react-icons/io'
 import { ApiData } from '../components/ContextApi';
 import { useDispatch } from 'react-redux';
-// import { addToCart } from '../components/slice/productSlice';
+import { addToCart } from '../components/slice/productSlice';
 
 
 
@@ -46,7 +46,7 @@ let status =
       <span className="text-red-500 font-semibold">Out of Stock</span>
     );
     let handleCart = (item) =>{
-    // dispatch(addToCart({...item, qun:1}))
+    dispatch(addToCart({...item, qun:1}))
     }
 
     
