@@ -15,11 +15,29 @@ export const productSlice = createSlice({
      }else{
       state.cartItem = [...state.cartItem, action.payload]
      }
+    },
+    removeCart:(state,action)=>{
+      let filtercart = state.cartItem.filter((item)=>
+       item.id != action.payload.id
+      )
+      state.cartItem = filtercart;
+    },
+    incrementQuantity:(state,action)=>{
+      let increment = state.cartItem.find((item)=> item.id == action.payload.id);
+      if(increment){
+        increment.qun +=1;
+      }
+    },
+    decrementQuantity:(state,action)=>{
+      let decrement = state.cartItem.find((item)=> item.id == action.payload.id );
+      if(decrement && decrement.qun > 0){
+         decrement.qun -=1;
+      }
     }
     
   },
 })
 
-export const { addToCart } = productSlice.actions
+export const { addToCart, removeCart , incrementQuantity, decrementQuantity} = productSlice.actions
 
 export default productSlice.reducer

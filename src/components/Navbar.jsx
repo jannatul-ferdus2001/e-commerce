@@ -9,6 +9,7 @@ import { FaUser } from "react-icons/fa";
 import { FaCaretDown } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 
 
@@ -121,21 +122,21 @@ const Navbar = () => {
                <FaUser className="" />
                <FaCaretDown />
             </div>
-            <div ref={cartRef} className="">
+            <Link to="/cart" className="">
 
                 {cartdata.length}
                 <FaCartArrowDown />
-            </div>
+            </Link>
         </div>
-       {accshow &&
+       {/* {accshow &&
         <div className="bg-[#fff] py-3 absolute left-0 top-[33px] w-full text-[#262626] z-100">
             <ul>
                 <li className="hover:bg-[#262626] hover:text-[#fff] py-2 text-center duration-300 ease-in-out">My Account</li>
                 <li className="hover:bg-[#262626] hover:text-[#fff] py-2 text-center duration-300 ease-in-out">Login</li>
             </ul>
         </div>
-       }
-      {cartshow &&
+       } */}
+      {/* {cartshow &&
        <div className="w-[270px] absolute top-[38px] left-0 z-100 ">
         <div className="flex items-center p-[10px] bg-[#F5F5F5] justify-between">
         <div className="h-[80px] w-[80px] bg-[#D8D8D8]"></div>
@@ -164,7 +165,7 @@ const Navbar = () => {
        </div>
        </div>
 
-      }
+      } */}
         </div>
 
         </div>
