@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const Post = ({allPage, filterCategory, active}) => {
+  window.scrollTo(0,0);
   let [allFilter, setAllFilter] = useState([])
   let [showAll, setShowAll] = useState(true)
   

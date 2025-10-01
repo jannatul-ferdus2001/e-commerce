@@ -9,7 +9,9 @@ import { FaUser } from "react-icons/fa";
 import { FaCaretDown } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { ApiData } from './ContextApi';
 
 
 
@@ -17,6 +19,7 @@ import { Link } from 'react-router-dom';
 
 
 const Navbar = () => {
+    let navigate = useNavigate()
     let cateRef = useRef()
     let accRef = useRef()
     let cartRef = useRef()
@@ -24,6 +27,8 @@ const Navbar = () => {
     let [accshow, setAccShow] = useState(false)
     let [cartshow, setCartShow] = useState(false)
     let cartdata = useSelector((state)=>state.product.cartItem)
+    let [filterProduct, setFilterproduct] = useState([])
+    let [searchModel, setSearchModel] = useState(false)
     useEffect(()=>{
        
         
@@ -48,6 +53,28 @@ const Navbar = () => {
         })
         
     }, []);
+
+    let {info, loading} = useContext(ApiData)
+    
+
+    // search functionality apply  
+
+    let handleSearch = (e)=>{
+        if(e.target.value){
+            setSearchModel(true)
+             let productFilter = info.filter((item)=> item.title.toLowerCase().includes(e.target.value.toLowerCase())
+        
+        )
+        setFilterproduct(productFilter);
+       }else{
+        setSearchModel(false)
+       }
+    }
+    let handleMove = (id) =>{
+        navigate(`/shop/${id}`);
+        window.location.reload()
+        
+    }
    
   return (
     <div className="bg-[#F5F5F3] py-3">
@@ -104,7 +131,7 @@ const Navbar = () => {
         </div>
         <div className="lg:w-4/7">
         <div className="relative">
-          <input
+          <input onChange={handleSearch}
       type="text"
       placeholder="Search Products"
       className="py-3 w-full pl-4 bg-[#ffff] text-[#C4C4C4] font-dm text-[14px] font-[400] outline-0"
@@ -115,6 +142,24 @@ const Navbar = () => {
 
           </div>
         </div>
+        {/* products show */}
+        {searchModel &&
+        <div className="w-full h-[300px] overflow-y-scroll border border-gray">
+          {filterProduct.map((item)=>(
+            <button onClick={()=>handleMove(item.id)}>
+
+            
+                <div className="flex items-center">
+                <img className='w-[100px]' src={item.thumbnail} alt="" />
+                <h2>{item.title}</h2>
+                <h3>{item.price}</h3>
+             </div>
+            </button>
+
+          ))}
+        </div>        }
+        
+        {/* products show */}
         </div>
         <div className="lg:w-1/7 relative">
         <div className="flex items-center justify-end gap-x-4">

@@ -13,6 +13,7 @@ import { addToCart } from '../components/slice/productSlice';
 
 
 const ProductDetails = () => {
+  window.scrollTo(0,0);
   let dispatch = useDispatch()
     let productId = useParams()
     let info = useContext(ApiData)
