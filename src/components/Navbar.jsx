@@ -7,7 +7,6 @@ import { FaSearch } from "react-icons/fa";
 import { FaCartArrowDown } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { FaCaretDown } from "react-icons/fa";
-import { RxCross2 } from "react-icons/rx";
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
@@ -70,11 +69,10 @@ const Navbar = () => {
         setSearchModel(false)
        }
     }
-    let handleMove = (id) =>{
+    let handleMove = (id) => {
         navigate(`/shop/${id}`);
-        window.location.reload()
-        
-    }
+         window.location.reload()
+        }
    
   return (
     <div className="bg-[#F5F5F3] py-3">
@@ -157,7 +155,8 @@ const Navbar = () => {
             </button>
 
           ))}
-        </div>        }
+        </div>       
+         }
         
         {/* products show */}
         </div>
